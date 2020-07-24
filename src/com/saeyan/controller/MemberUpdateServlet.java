@@ -2,23 +2,22 @@ package com.saeyan.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+/*import javax.servlet.http.HttpSession;
 
-import com.oracle.jrockit.jfr.RequestDelegate;
+import com.oracle.jrockit.jfr.RequestDelegate;*/
 import com.saeyan.dao.MemberDAO;
 import com.saeyan.dto.MemberVO;
 
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/MemberUpdateServlet")
+@WebServlet("/memberUpdate.do")
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +40,8 @@ public class MemberUpdateServlet extends HttpServlet {
 		MemberVO mVo=mDao.getMember(userid);
 		request.setAttribute("mVo", mVo);
 		
-		RequestDispatcher dispacher=request.getRequestDispatcher("member/memberUpdate.jsp");
+		RequestDispatcher dispacher=request
+				.getRequestDispatcher("member/memberUpdate.jsp");
 		dispacher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -52,13 +52,14 @@ public class MemberUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");//한글 깨짐을 방지
+		//폼에서 입력한 회원 정보 얻어오기
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String admin = request.getParameter("admin");
-		
+		//회원 정보를 저장할 객체생성
 		MemberVO mVo= new MemberVO();
 		mVo.setUserid(userid);
 		mVo.setPwd(pwd);
@@ -67,9 +68,10 @@ public class MemberUpdateServlet extends HttpServlet {
 		mVo.setAdmin(Integer.parseInt(admin));
 		
 		MemberDAO mDao=MemberDAO.getInstance();
+		
 		mDao.updateMember(mVo);
 		response.sendRedirect("login.do");
-		doGet(request, response);
+		
 	}
 
 }

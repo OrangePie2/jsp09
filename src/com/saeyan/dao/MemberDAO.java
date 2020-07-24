@@ -1,11 +1,11 @@
 package com.saeyan.dao;
 
-import java.sql.*;
-
-import javax.naming.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import com.saeyan.*;
 import com.saeyan.dto.MemberVO;
 
 public class MemberDAO {
@@ -39,6 +39,7 @@ public class MemberDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setNString(1, userid);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				if (rs.getString("pwd") != null && rs.getString("pwd").equals(pwd)) {
@@ -76,7 +77,7 @@ public class MemberDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setNString(1, userid);
+			pstmt.setString(1, userid);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				mVo = new MemberVO();
@@ -103,10 +104,10 @@ public class MemberDAO {
 		}
 		return mVo;
 	}
-
+//중복된 내용 생략
 	public int confirmID(String userid) {
 		int result = -1;
-		String sql = "select userid form member where userid=?";
+		String sql = "select userid from member where userid=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -168,6 +169,7 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	//중복된내용은 생략(p.511)
 	public int updateMember(MemberVO mVo) {
 		int result=-1;
 		String sql="update member set pwd=?, email=?,"+"phone=?, admin=? where userid=?";

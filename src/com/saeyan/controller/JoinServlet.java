@@ -17,13 +17,13 @@ import com.saeyan.dto.MemberVO;
  * Servlet implementation class joinServlet
  */
 @WebServlet("/join.do")
-public class joinServlet extends HttpServlet {
+public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public joinServlet() {
+    public JoinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,8 @@ public class joinServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher= request.getRequestDispatcher("member/join.jsp");
+		RequestDispatcher dispatcher= request
+				.getRequestDispatcher("member/join.jsp");
 		dispatcher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -54,7 +55,6 @@ public class joinServlet extends HttpServlet {
 		String admin = request.getParameter("admin");
 		
 		MemberVO mVo= new MemberVO();
-		
 		mVo.setName(name);
 		mVo.setUserid(userid);
 		mVo.setPwd(pwd);
@@ -73,10 +73,10 @@ public class joinServlet extends HttpServlet {
 		}else {
 			request.setAttribute("message", "회원가입 실패");
 		}
-		RequestDispatcher dispatcher= request.getRequestDispatcher("member/login.jsp");
+		RequestDispatcher dispatcher= request
+				.getRequestDispatcher("member/login.jsp");
 		dispatcher.forward(request, response);
-		
-		doGet(request, response);
+	
 	}
 
 }

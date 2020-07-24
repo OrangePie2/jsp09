@@ -45,7 +45,7 @@ public void setAdmin(int admin) {
 }
 @Override
 public String toString() {
-	return "MemberVo [name=" + name + ", userid=" + userid + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
+	return "MemberVO [name=" + name + ", userid=" + userid + ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
 			+ ", admin=" + admin + "]";
 }
 

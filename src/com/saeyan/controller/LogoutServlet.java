@@ -2,6 +2,7 @@ package com.saeyan.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,8 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
 		session.invalidate();
-		RequestDispatcher dispacher=request.getRequestDispatcher("member/login.jsp");
+		RequestDispatcher dispacher=request
+				.getRequestDispatcher("member/login.jsp");
 		dispacher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -46,7 +48,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doPost(request, response);
 	}
 
 }

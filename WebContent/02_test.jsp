@@ -11,7 +11,7 @@
 <body>
 <%
 MemberDAO memDao=MemberDAO.getInstance();
-Connection conn=memDao.getConnection();
+Connection conn= memDao.getConnection();
 out.println("DBCP 연동 성공");
 %>
 </body>

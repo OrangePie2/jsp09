@@ -2,6 +2,7 @@ package com.saeyan.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +40,8 @@ public class idCheckServlet extends HttpServlet {
 		request.setAttribute("userid", userid);
 		request.setAttribute("result", result);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/idcheck.jsp");
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher("member/idcheck.jsp");
 		dispatcher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -50,7 +52,7 @@ public class idCheckServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doPost(request, response);
 	}
 
 }

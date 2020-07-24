@@ -2,8 +2,6 @@ package com.saeyan.controller;
 
 import java.io.IOException;
 
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,17 +33,25 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String url ="member/login.jsp";
-		HttpSession session=request.getSession();
-		if(session.getAttribute("loginUser")!=null) {
-			url="main.jsp";
+		 String url ="member/login.jsp"; 
+		 
+		 HttpSession session=request.getSession();
+		 
+		 if(session.getAttribute("loginUser")!=null){//이미로그인 된 사용자이면
+			 url="main.jsp"; //메인페이지로 이동한다.
 		}
-		
-		RequestDispatcher dispatcher= request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
+		 RequestDispatcher dispatcher= request
+				  .getRequestDispatcher(url); 
+		 dispatcher.forward(request, response);
+		 
+			/*
+			 * RequestDispatcher dispatcher= request
+			 * .getRequestDispatcher("member/login.jsp");
+			 * dispatcher.forward(request,response);
+			 */
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		 
 	}
 
 	/**
@@ -67,16 +73,16 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("message", "회원가입에 성공했습니다.");
 			url="main.jsp";
 		}else if(result==0) {
-			request.setAttribute("message", "비밀번호사 맞지 않습니다.");
-		}else if(result==1) {
+			request.setAttribute("message", "비밀번호가 맞지 않습니다.");
+		}else if(result==-1) {
 			request.setAttribute("message", "회원이 존재하지 않습니다.");
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		RequestDispatcher dispatcher = request
+				.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 		
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }

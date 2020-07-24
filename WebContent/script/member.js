@@ -8,21 +8,19 @@ function loginCheck(){
 	    alert("비밀번호를 반드시 써주세요");
 		frm.pwd.focus();
 		return false;
-	
 	}
 	return true;
-}
+   }
+//중복된 내용은 생략합니다
 function idCheck(){
-	if(document.frm.pwd.value==""){
+	if(document.frm.userid.value==""){
 	    alert("아이디를 반드시 써주세요");
 		document.frm.userid.focus();
 		return;
-	
 	}
 	var url = "idCheck.do?userid="+ document.frm.userid.value;
 	window.open(url, "_blank_1",
-	"toolbar=no, menubar=no, scrollbars=yes, resizable=no,
-	width=450, height=200" );
+	"toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200" );
 }
 //중복된 내용은 생략합니다.
 function idok(){
@@ -30,7 +28,7 @@ function idok(){
 	opener.frm.reid.value=document.frm.userid.value;
 		self.close();
 		}
-		
+		//중복된 내용은 생략합니다.
 		function joinCheck(){
 		if(document.frm.name.value.length==0){
 		alert("이름를 써주세요");
